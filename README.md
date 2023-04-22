@@ -22,7 +22,8 @@ The DQN agent is integrated into the PyRace environment to enable the agent to l
 ## **Applied Modifications**:
 
 
-## 2.1 **Continuous Radar Values**: The observe function in the PyRace2D class has been updated to provide continuous radar values (in pixels) rather than discrete intervals of 20 pixels. This allows for more precise distance measurements, improving the model's ability to make better driving decisions.
+## 2.1 **Continuous Radar Values**:
+The observe function in the PyRace2D class has been updated to provide continuous radar values (in pixels) rather than discrete intervals of 20 pixels. This allows for more precise distance measurements, improving the model's ability to make better driving decisions.
 
 <pre>
 ``` python
