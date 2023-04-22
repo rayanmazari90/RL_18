@@ -112,7 +112,8 @@ class Car:
 
     def update(self,map=None):
         #check speed
-        self.speed -= 0.5
+        friction = 0.05 * self.speed
+        self.speed -= friction
         if self.speed > 10: self.speed = 10
         if self.speed < 1:  self.speed = 1
         
