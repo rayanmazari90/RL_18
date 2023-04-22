@@ -6,18 +6,18 @@ import math, random
 import numpy as np
 import matplotlib.pyplot as plt
 import gym
-import gym_race
+import gym_race_continious
 from gym.envs.registration import register
 import glob
 
 
 register(
     id='Pyrace-v2',
-    entry_point='gym_race.envs:RaceEnv',
+    entry_point='gym_race_continious.envs:RaceEnv',
     max_episode_steps=2000,
 )
 
-VERSION_NAME = 'DQN_FINAL'  # the name for our model
+VERSION_NAME = 'DQN_FINAL_CONTINUS'  # the name for our model
 REPORT_EPISODES = 500  # report (plot) every...
 DISPLAY_EPISODES = 100  # display live game every...
 
@@ -232,11 +232,26 @@ if __name__ == "__main__":
     MAX_T = 2000
 
     # CHOOSE IF YOU EITHER WANT TO SIMLULATE OR LOADGAME
-    SIMULATE = False
+    SIMULATE = True
 
     # Remove the q_table initialization and instead initialize the DQN model
     dqn_model = DQNModel(NUM_ACTIONS)
-    
+    if SIMULATE:
+        last_saved_weights, last_episode = get_last_saved_weights(f'models_{VERSION_NAME}')
+        if last_saved_weights:
+            print(f'Loading weights from: {last_saved_weights}')
+            print("hello", last_episode)
+            dqn_model.build((None,) + env.observation_space.shape)
+            dqn_model.load_weights(last_saved_weights)
+            simulate(model=dqn_model, start_episode=last_episode)
+            # Update NUM_EPISODES based on the last_episode
+        else:
+            simulate(model=dqn_model)
+
+    else:
+        last_saved_weights, last_episode = get_last_saved_weights(f'models_{VERSION_NAME}')
+        if last_saved_weights:
+            load_and_play(episode=last_episode)
    
         
     

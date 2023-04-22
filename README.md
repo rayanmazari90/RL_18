@@ -10,53 +10,8 @@ The DQN agent is integrated into the PyRace environment to enable the agent to l
 2. Suggested Improvements for the Current Model
 To improve the current model, consider the following modifications:
 
-2.1 Use continuous inputs for the state representation:
-
-Instead of using discrete intervals for the radar values, use continuous values (in pixels). Modify the PyRace2D.observe() function to return continuous values for the radars.
-
-### python
-
-def observe(self):
-    ...
-    # Modify the code to return continuous values for the radars
-    state = [ray.distance for ray in self.car.radar]
-    ...
-2.2 Use continuous action space:
-
-Instead of having discrete actions (turn left, turn right, accelerate), have continuous actions (e.g., steering angle, acceleration). This would require modifying the get_action method and possibly using an actor-critic approach or DDPG (Deep Deterministic Policy Gradient) algorithm.
-
-2.3 Add a 'BRAKE' action:
-
-Introduce a new action for braking to provide better control over the car's speed. This would require updating the action space and modifying the car's update method.
-
-### python
-
-def get_action(self, state):
-    ...
-    final_move = np.zeros(4)
-    if random.randint(0, 200) < self.epsilon:
-        move = random.randint(0, 3)
-    else:
-        state0 = torch.tensor(np.array(state), dtype=torch.float)
-        prediction = self.model(state0.to(self.model.device))
-        move = torch.argmax(prediction).item()
-    final_move[move] = 1
-    return final_move
-### python
-
-def action(self, action):
-    ...
-    if action == 3:
-        self.car.speed -= 2
-        
-        
-       
-2.4 Update the neural network architecture and training process:
-
-Handle continuous inputs and outputs by modifying the neural network architecture and training process.
-
-2.5 Test the modified model:
-
-Evaluate the modified model's performance in the racing game environment to assess the improvements.
-
-Note that implementing these changes may require more advanced techniques like using actor-critic methods or other algorithms specifically designed for continuous action spaces. Additionally, you may need to adjust the neural network architecture and hyperparameters to achieve better performance.
+2.1 **Continuous Radar Values**: The observe function in the PyRace2D class has been updated to provide continuous radar values (in pixels) rather than discrete intervals of 20 pixels. This allows for more precise distance measurements, improving the model's ability to make better driving decisions.
+print(`def observe(self):
+    radars = self.car.radars
+    ret = [r[1] for r in radars]
+    return ret`)
