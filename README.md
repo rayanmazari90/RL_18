@@ -10,14 +10,19 @@ The DQN agent is integrated into the PyRace environment to enable the agent to l
 ## 2. Suggested/Applied Improvements for the Current Model
 
 ## **Suggested Improvements**:
-- Use a more complex model architecture:
-    The current DQN model is relatively simple, with only a few dense layers. You can experiment with more complex model architectures, such as adding more layers or incorporating different layer types (e.g., convolutional layers, recurrent layers).
-- Use advanced RL algorithms:
-    You can consider implementing more advanced reinforcement learning algorithms like Double DQN, Dueling DQN, or even policy gradient methods like Proximal Policy Optimization (PPO) or Deep Deterministic Policy Gradient (DDPG) for continuous action spaces.
-- Hyperparameter tuning:
-    Experiment with different hyperparameters, such as learning rates, discount factors, exploration rates, and memory buffer sizes. You can use techniques like grid search or random search to find the optimal set of hyperparameters for your model.
-- Better exploration strategy:
-    Instead of using an epsilon-greedy strategy, you can experiment with other exploration strategies, such as Upper Confidence Bound (UCB), or Thompson Sampling.
+
+
+
+
+- Construct a better model architecture:
+    Experimenting with more complex model architectures, such as adding more layers or incorporating different layer types (e.g., convolutional layers, recurrent layers). We could give as an input the images of the game to the agent and use the cvl layers to get better features as an example.The use of recurrent layers couls also help taking in account the sequence of the race , thus better anticipationg turns and future actions to make. 
+- Explore and experimenting more RL algorithms:
+    Implementing advanced reinforcement learning algorithms like Double DQN, Dueling DQN, Proximal Policy Optimization (PPO), or Deep Deterministic Policy Gradient (DDPG) for continuous action spaces.
+- Hyperparameter tuning for the model:
+    Tuning hyperparameters, such as learning rates, discount factors, exploration rates, and memory buffer sizes.
+    Exploring better exploration strategies, such as Upper Confidence Bound (UCB), or Thompson Sampling.
+- Find a more efficient exploration strategy:
+    Instead of using an epsilon-greedy strategy, you can experiment with other exploration strategies, such as Upper Confidence Bound (UCB), or Thompson Sampling that we have covered during the course.
 
 ## **Applied Modifications**:
 
