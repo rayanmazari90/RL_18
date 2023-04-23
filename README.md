@@ -71,6 +71,13 @@ def update(self, map=None):
 </pre>
 
 To use the modified Gym Continuous PyRace2D environment, clone this repository and run the Py folder with the new Pyrace_RL_DQNMODEL_Continious.PY script, it uses the modified version of gym_race which is pyrace_gym_continious. 
-
-
 To run this repository install the dependencies
+
+## **Optional More Advanced Model: Pyrace_RL_A2C_Continious**
+`Pyrace_RL_A2C_Continious` uses the A2C (Advantage Actor-Critic) algorithm to train an agent to play a continuous racing game in the PyRace environment. The agent interacts with the environment, stores the experience tuples in the memory, and updates the model using the A2C algorithm. The A2C model class defines the actor-critic network with three dense layers. During training, the agent uses the A2C algorithm to update the model by computing advantages and gradients. The learning rate and exploration rate are annealed over time. The `simulate` function runs the game loop and evaluates the model after each episode. 
+
+
+To use the modified Gym Continuous PyRace2D environment, clone this repository and run the Py folder with the new python3 `Pyrace_RL_A2C_Continious.py` script, it uses the modified version of gym_race which is `pyrace_gym_continious`(the same as the one before). 
+
+
+
